@@ -13,6 +13,9 @@ public class DemoApplicationRouteBuilder extends RouteBuilder {
         from("timer:mockData")
             .transform(simple("Testing..."))
             .to("kafka:my-topic?brokers=172.30.200.84:9092")
-            .to("log:output");
+            .to("log:Producer");
+
+        from("kafka:my-topic?brokers=172.30.200.84:9092")
+            .to("log:Consumer");
     }
 }
